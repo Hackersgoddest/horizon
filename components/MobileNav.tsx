@@ -5,6 +5,7 @@ import {
     SheetClose,
     SheetContent,
     SheetDescription,
+    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -14,6 +15,7 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Footer from "./Footer"
 
 const MobileNav = ({ user }: MobileNavProps) => {
     const pathname = usePathname()
@@ -24,10 +26,17 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     <Image src='/icons/hamburger.svg' width={30} height={30} alt='menu' className="cursor-pointer" />
                 </SheetTrigger>
                 <SheetContent side="left" className="border-none bg-white">
-                    <Link href="/" className="flex cursor-pointer item-center gap-1 px-4">
-                        <Image src="/icons/logo.svg" alt="Horizon Logo" width={34} height={34} />
-                        <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Horizon</h1>
-                    </Link>
+                    <SheetHeader>
+                        <SheetTitle>
+                            <Link href="/" className="flex cursor-pointer item-center gap-1 px-4">
+                                <Image src="/icons/logo.svg" alt="Horizon Logo" width={34} height={34} />
+                                <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Horizon</h1>
+                            </Link>
+                        </SheetTitle>
+                        <SheetDescription className="header-box-subtext">
+                            Modern Online Banking for Your Financial Needs.
+                        </SheetDescription>
+                    </SheetHeader>
                     <div className="mobilenav-sheet">
                         <SheetClose asChild>
                             <nav className="flex h-ful flex-col gap-6 pt-16 text-white">
@@ -60,6 +69,9 @@ const MobileNav = ({ user }: MobileNavProps) => {
                                 })}
                             </nav>
                         </SheetClose>
+                        <SheetFooter>
+                            <Footer user={user} type="mobile" />
+                        </SheetFooter>
                     </div>
                 </SheetContent>
             </Sheet>
